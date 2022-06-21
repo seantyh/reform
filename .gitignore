@@ -1,6 +1,8 @@
+data
 data/
 *~
 *.swp
+bin/*.log
 
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
