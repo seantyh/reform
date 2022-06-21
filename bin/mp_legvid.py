@@ -157,6 +157,7 @@ def main(video_path, out_dir=None, debug=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="script to mediapipe")
     parser.add_argument("video_path", type=str)
+    parser.add_argument("--out_dir", default=None)
     parser.add_argument("--debug", action="store_true")
     args = parser.parse_args()
     main(**vars(args))
