@@ -67,7 +67,7 @@ def main(video_path, out_dir=None, debug=False):
     height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
     # cap.set(cv2.CAP_PROP_POS_FRAMES, 1000)
     pbar = tqdm(total=n_frames)
-    static_image_mode = False
+    static_image_mode = True
     face_detection = mp_face.FaceDetection(model_selection=1, min_detection_confidence=0.5)
     face_mesh = mp_mesh.FaceMesh(static_image_mode=static_image_mode, 
                                 max_num_faces=3, refine_landmarks=True,
@@ -117,7 +117,8 @@ def main(video_path, out_dir=None, debug=False):
             
         for _ in range(n_face):
             pose_results = pose.process(image)
-            pose_results_list.append(pose_results)
+            if pose_results.pose_landmarks:
+                pose_results_list.append(pose_results)
             if pose_results.segmentation_mask is not None:
                 image = mask_people(image, pose_results.segmentation_mask)
             
